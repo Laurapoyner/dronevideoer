@@ -107,31 +107,31 @@ const InfiniteLoadingPrank = ({ onClose }: { onClose: () => void }) => {
   }, []);
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-6 text-center">
+    <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center p-4 md:p-6 text-center">
       <motion.div 
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        className="w-full max-w-xl glass p-10 rounded-3xl glow-red"
+        className="w-full max-w-xl glass p-6 md:p-10 rounded-2xl md:rounded-3xl glow-red"
       >
-        <div className="relative mb-8 flex items-center justify-center">
-          <Loader2 className="text-red-600 animate-spin" size={64} />
-          <Shield className="absolute text-white/20" size={24} />
+        <div className="relative mb-6 md:mb-8 flex items-center justify-center">
+          <Loader2 className="text-red-600 animate-spin" size={48} />
+          <Shield className="absolute text-white/20" size={18} />
         </div>
         
-        <h2 className="text-white text-2xl font-black uppercase tracking-tight mb-4">Initialiserer Sikker Forbindelse</h2>
-        <p className="text-zinc-400 text-sm mb-10 max-w-sm mx-auto">
+        <h2 className="text-white text-lg md:text-2xl font-black uppercase tracking-tight mb-2 md:mb-4 leading-tight">Initialiserer Sikker Forbindelse</h2>
+        <p className="text-zinc-400 text-[10px] md:text-sm mb-6 md:mb-10 max-w-sm mx-auto">
           Vent venligst, Kevin. Vi dekrypterer de rå drone-optagelser fra d. 26. Dette kan tage et øjeblik pga. filstørrelsen.
         </p>
         
-        <div className="space-y-4">
-          <div className="w-full h-3 bg-white/5 rounded-full overflow-hidden border border-white/10 p-0.5">
+        <div className="space-y-3 md:space-y-4">
+          <div className="w-full h-2 md:h-3 bg-white/5 rounded-full overflow-hidden border border-white/10 p-0.5">
             <motion.div 
               className="h-full bg-gradient-to-r from-red-600 to-red-400 rounded-full"
               animate={{ width: `${progress}%` }}
             />
           </div>
-          <div className="flex justify-between text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
-            <span>Status: {status}</span>
+          <div className="flex justify-between text-[8px] md:text-[10px] font-mono text-zinc-500 uppercase tracking-widest">
+            <span className="truncate max-w-[150px]">Status: {status}</span>
             <span className="text-red-500 font-bold">{progress.toFixed(1)}%</span>
           </div>
         </div>
@@ -140,10 +140,10 @@ const InfiniteLoadingPrank = ({ onClose }: { onClose: () => void }) => {
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-10 pt-6 border-t border-white/5"
+            className="mt-6 md:mt-10 pt-4 md:pt-6 border-t border-white/5"
           >
-            <p className="text-red-400 font-mono text-xs mb-4">CRITICAL ERROR: Båndbredde begrænset af Simons 'Hundehvalp' node.</p>
-            <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg text-sm transition-colors uppercase tracking-widest">
+            <p className="text-red-400 font-mono text-[8px] md:text-xs mb-3 md:mb-4">CRITICAL ERROR: Båndbredde begrænset af Simons 'Hundehvalp' node.</p>
+            <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 md:px-6 rounded-lg text-[10px] md:text-sm transition-colors uppercase tracking-widest">
               Gennemtving Adgang
             </button>
           </motion.div>
@@ -152,7 +152,7 @@ const InfiniteLoadingPrank = ({ onClose }: { onClose: () => void }) => {
       
       <button 
         onClick={onClose}
-        className="mt-12 text-zinc-600 hover:text-zinc-300 transition-colors uppercase tracking-widest text-[10px] font-bold"
+        className="mt-8 md:mt-12 text-zinc-600 hover:text-zinc-300 transition-colors uppercase tracking-widest text-[8px] md:text-[10px] font-bold"
       >
         Afbryd overvågning
       </button>
@@ -175,93 +175,99 @@ export default function App() {
     <div className="min-h-screen pt-24 pb-12 px-6">
       <Navbar />
 
-      <main className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-8">
+      <main className="max-w-6xl mx-auto flex flex-col lg:flex-row gap-6 md:gap-8">
         {/* Main Video Section */}
-        <div className="flex-1 space-y-6">
+        <div className="flex-1 space-y-4 md:space-y-6">
           {/* Video Player Placeholder */}
           <div 
-            className="video-placeholder aspect-video rounded-3xl overflow-hidden glow-red border border-white/10 relative group cursor-pointer"
+            className="video-placeholder aspect-video rounded-2xl md:rounded-3xl overflow-hidden glow-red border border-white/10 relative group cursor-pointer"
             onClick={() => setIsPrankActive(true)}
           >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center group-hover:scale-110 transition-transform duration-500">
-                <div className="spinner mb-6 mx-auto"></div>
-                <h2 className="text-xl font-black uppercase tracking-widest text-white/80">Klargør dronevideo... loading</h2>
-                <p className="text-zinc-500 text-sm mt-3 font-medium">Klik for at dekryptere og afspille optagelsen</p>
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <div className="text-center group-hover:scale-105 transition-transform duration-500">
+                <div className="spinner mb-4 md:mb-6 mx-auto"></div>
+                <h2 className="text-sm md:text-xl font-black uppercase tracking-widest text-white/80 line-clamp-1">
+                  Klargør dronevideo...
+                </h2>
+                <h2 className="text-lg md:text-2xl font-black uppercase tracking-widest text-red-600">
+                  LOADING
+                </h2>
+                <p className="text-zinc-500 text-[10px] md:text-sm mt-2 md:mt-3 font-medium">Klik for at dekryptere og afspille optagelsen</p>
               </div>
             </div>
             
             {/* Play Button Overlay */}
-            <div className="absolute bottom-8 left-8 flex items-center gap-4">
-              <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center shadow-2xl shadow-red-600/50">
-                <Play className="text-white fill-white ml-1" size={24} />
+            <div className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex items-center gap-3 md:gap-4">
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-full bg-red-600 flex items-center justify-center shadow-2xl shadow-red-600/50">
+                <Play className="text-white fill-white ml-0.5 md:ml-1" size={18} />
               </div>
-              <div className="text-white/40 text-xs font-mono">ENCRYPTED_FEED_026</div>
             </div>
           </div>
 
           {/* Video Details */}
-          <div className="bg-white/5 border border-white/5 p-6 rounded-3xl space-y-6">
-            <div className="flex justify-between items-start gap-4">
-              <div className="space-y-3">
+          <div className="bg-white/5 border border-white/5 p-4 md:p-6 rounded-2xl md:rounded-3xl space-y-4 md:space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+              <div className="space-y-2 md:space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className="bg-red-600 text-[10px] font-black px-2 py-0.5 rounded text-white uppercase tracking-tighter shadow-lg shadow-red-600/20">Eksklusivt</span>
-                  <span className="text-zinc-500 text-xs font-mono">Dato: 26. April 2026</span>
+                  <span className="bg-red-600 text-[8px] md:text-[10px] font-black px-1.5 md:px-2 py-0.5 rounded text-white uppercase tracking-tighter shadow-lg shadow-red-600/20">Eksklusivt</span>
+                  <span className="text-zinc-500 text-[10px] md:text-xs font-mono">Dato: 26. April 2026</span>
                 </div>
-                <h1 className="text-2xl md:text-3xl font-black tracking-tight leading-none text-white">
+                <h1 className="text-lg md:text-3xl font-black tracking-tight leading-tight text-white">
                   Hvorfor Kevin kom for sent til kamp d. 26 - Var det virkelig Simons 'hundehvalps' skyld?
                 </h1>
-                <div className="flex items-center gap-4 text-zinc-400 text-sm">
-                  <span className="flex items-center gap-1.5"><Eye size={16} /> 1.2M visninger</span>
-                  <span className="flex items-center gap-1.5 font-bold text-red-500"><div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div> Live Optagelse</span>
+                <div className="flex items-center gap-3 md:gap-4 text-zinc-400 text-[10px] md:text-sm">
+                  <span className="flex items-center gap-1"><Eye size={14} /> 1.2M visninger</span>
+                  <span className="flex items-center gap-1 font-bold text-red-500">
+                    <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div> Live
+                  </span>
                 </div>
               </div>
-              <div className="flex gap-2 shrink-0">
-                <button className="p-3 glass rounded-2xl hover:bg-white/10 transition-colors">
-                  <ThumbsUp size={20} />
+              <div className="flex gap-2 shrink-0 self-end sm:self-start">
+                <button className="p-2.5 md:p-3 glass rounded-xl md:rounded-2xl hover:bg-white/10 transition-colors">
+                  <ThumbsUp size={18} />
                 </button>
-                <button className="p-3 glass rounded-2xl hover:bg-white/10 transition-colors">
-                  <Share2 size={20} />
+                <button className="p-2.5 md:p-3 glass rounded-xl md:rounded-2xl hover:bg-white/10 transition-colors">
+                  <Share2 size={18} />
                 </button>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-white/5 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-red-600 to-red-900 border border-white/10 flex items-center justify-center overflow-hidden">
-                  <Shield size={24} className="text-white/80" />
+            <div className="pt-4 md:pt-6 border-t border-white/5 flex items-center justify-between">
+              <div className="flex items-center gap-3 md:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-gradient-to-br from-red-600 to-red-900 border border-white/10 flex items-center justify-center overflow-hidden">
+                  <Shield size={20} className="text-white/80" />
                 </div>
                 <div>
-                  <p className="font-black text-sm uppercase tracking-tight">DroneIntel Denmark</p>
-                  <p className="text-xs text-zinc-500">4.2M agenter</p>
+                  <p className="font-black text-xs md:text-sm uppercase tracking-tight">DroneIntel Denmark</p>
+                  <p className="text-[10px] text-zinc-500">4.2M agenter</p>
                 </div>
               </div>
-              <button className="bg-white text-black font-black px-6 py-2.5 rounded-xl text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors">
-                Tilmeld arkiv
+              <button className="bg-white text-black font-black px-4 md:px-6 py-2 md:py-2.5 rounded-lg md:rounded-xl text-[10px] md:text-xs uppercase tracking-widest hover:bg-zinc-200 transition-colors">
+                Tilmeld
               </button>
             </div>
           </div>
         </div>
 
         {/* Sidebar / Recommended (Simplified) */}
-        <aside className="w-full lg:w-80 shrink-0 space-y-6">
+        <aside className="w-full lg:w-80 shrink-0 space-y-4 md:space-y-6">
           <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500 px-1">Anbefalet til dig</h3>
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
               {[
                 { title: "Sandheden om Simons 'Hundehvalp'", views: "2M views", time: "10:04" }
               ].map((item, i) => (
                 <div key={i} className="flex gap-3 group cursor-pointer">
-                  <div className="w-32 h-20 glass rounded-xl overflow-hidden shrink-0 relative">
+                  <div className="w-28 h-16 md:w-32 md:h-20 glass rounded-lg md:rounded-xl overflow-hidden shrink-0 relative">
                      <div className="absolute inset-0 bg-gradient-to-tr from-zinc-950 to-zinc-900 opacity-80"></div>
-                     <div className="absolute bottom-1 right-1 bg-black/80 text-[10px] px-1 rounded font-mono text-zinc-400">
+                     <div className="absolute bottom-1 right-1 bg-black/80 text-[8px] md:text-[10px] px-1 rounded font-mono text-zinc-400">
                         {item.time}
                      </div>
                   </div>
                   <div className="flex flex-col justify-center">
-                    <p className="text-xs font-bold line-clamp-2 leading-tight group-hover:text-red-500 transition-colors uppercase tracking-tight">
+                    <p className="text-[10px] md:text-xs font-bold line-clamp-2 leading-tight group-hover:text-red-500 transition-colors uppercase tracking-tight">
                       {item.title}
                     </p>
-                    <p className="text-[10px] text-zinc-500 mt-1 font-mono">{item.views}</p>
+                    <p className="text-[8px] md:text-[10px] text-zinc-500 mt-1 font-mono">{item.views}</p>
                   </div>
                 </div>
               ))}
